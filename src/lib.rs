@@ -31,7 +31,6 @@ A valid format consists of any combination of sections separated by separators.
 There is no locale that is specifically followed, but the names for the days and
 months are taken from
 [The Unicode Common Locale Data Repository](https://github.com/unicode-org/cldr-json/blob/main/cldr-json/cldr-dates-modern/main/en/ca-gregorian.json)
-
  */
 pub fn format(date: &NaiveDate, format: &str) -> Result<String, Box<dyn Error>> {
     let parts: Vec<FormatPart> = split_format(format)
