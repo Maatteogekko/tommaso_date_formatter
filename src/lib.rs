@@ -76,9 +76,11 @@ enum FormatPart {
     Separator(Separator),
 }
 
+#[allow(clippy::upper_case_acronyms)]
 #[derive(Debug, Sequence)]
 enum Section {
     YY,
+    YYYY,
     MM,
     DD,
 }
@@ -114,6 +116,7 @@ impl Section {
     fn value(&self) -> &str {
         match *self {
             Self::YY => "yy",
+            Self::YYYY => "yyyy",
             Self::MM => "mm",
             Self::DD => "dd",
         }
@@ -122,6 +125,7 @@ impl Section {
     fn format(&self, date: &NaiveDate) -> Result<String, Box<dyn Error>> {
         match self {
             Section::YY => Ok(format!("{:0>2}", date.year() % 100)),
+            Section::YYYY => Ok(format!("{}", date.year())),
             Section::MM => Ok(format!("{:0>2}", date.month())),
             Section::DD => Ok(format!("{:0>2}", date.day())),
         }
