@@ -151,11 +151,11 @@ impl Section {
             Section::D => format!("{}", date.day()),
             Section::DD => format!("{:0>2}", date.day()),
             Section::DDD => DAYS_ABBREVIATED
-                .get(&(date.day() as u8))
+                .get(&(date.weekday() as u8 + 1))
                 .expect("day value found")
                 .to_string(),
             Section::DDDD => DAYS_WIDE
-                .get(&(date.day() as u8))
+                .get(&(date.weekday() as u8 + 1))
                 .expect("day value found")
                 .to_string(),
         }
