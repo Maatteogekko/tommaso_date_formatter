@@ -3,22 +3,23 @@
 # Description
   
 Good news, Banca Tommaso PFM is expanding internationally! As a result, you have
-some [Internationalization (i18n) and localization (l10n)](https://en.wikipedia.org/wiki/Internationalization_and_localization)
-tasks to do. One of them is adding the ability to display dates in different formats.
-We all know that ~~dd-mm-yyyy~~ YYYY-MM-DD is obviously the
+some
+[Internationalization (i18n) and localization (l10n)](https://en.wikipedia.org/wiki/Internationalization_and_localization)
+tasks to do. One of them is adding the ability to display dates in different
+formats. We all know that ~~dd-mm-yyyy~~ YYYY-MM-DD is obviously the
 [superior date format](https://dev-to-uploads.s3.amazonaws.com/i/6gnzyh285b31v6n202fg.png)
-and we don't need others, but unfortunately not [all countries](https://en.wikipedia.org/wiki/List_of_date_formats_by_country)
-have come to this conclusion yet. 
-"Easy task" you think and proceed to add  [MomentJS](https://momentjs.com/)
-to the project and open the PR.
-A few hours later you find this comment on the PR:
+and we don't need others, but unfortunately not
+[all countries](https://en.wikipedia.org/wiki/List_of_date_formats_by_country)
+have come to this conclusion yet. "Easy task" you think and proceed to add
+[MomentJS](https://momentjs.com/) to the project and open the PR. A few hours
+later you find this comment on the PR:
  
 > Nice job! Everything looks great but I have some concerns about the
-introduction of moment in the project.
-The only feature we are using is the date formatting, but this package is adding
-~300Kb to the project. Also the authors are kind of
-[deprecating](https://momentjs.com/docs/#/-project-status/) it. Are there other
-alternatives out there? Can we implement the format function ourself?
+introduction of moment in the project. The only feature we are using is the date
+formatting, but this package is adding ~300Kb to the project. Also the authors
+are kind of [deprecating](https://momentjs.com/docs/#/-project-status/) it. Are
+there other alternatives out there? Can we implement the format function
+ourself?
 
 You then decide to try to implement the function yourself.
 
