@@ -83,6 +83,7 @@ enum Section {
     YYYY,
     M,
     MM,
+    D,
     DD,
 }
 
@@ -120,6 +121,7 @@ impl Section {
             Self::YYYY => "yyyy",
             Self::M => "m",
             Self::MM => "mm",
+            Self::D => "d",
             Self::DD => "dd",
         }
     }
@@ -130,6 +132,7 @@ impl Section {
             Section::YYYY => format!("{}", date.year()),
             Section::M => format!("{}", date.month()),
             Section::MM => format!("{:0>2}", date.month()),
+            Section::D => format!("{}", date.day()),
             Section::DD => format!("{:0>2}", date.day()),
         }
     }
