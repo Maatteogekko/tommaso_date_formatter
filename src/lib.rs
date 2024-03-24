@@ -87,6 +87,7 @@ enum Section {
     MMMM,
     D,
     DD,
+    DDD,
 }
 
 #[derive(Debug, Sequence)]
@@ -127,6 +128,7 @@ impl Section {
             Self::MMMM => "mmmm",
             Self::D => "d",
             Self::DD => "dd",
+            Self::DDD => "ddd",
         }
     }
 
@@ -146,6 +148,10 @@ impl Section {
                 .to_string(),
             Section::D => format!("{}", date.day()),
             Section::DD => format!("{:0>2}", date.day()),
+            Section::DDD => DAYS_ABBREVIATED
+                .get(&(date.day() as u8))
+                .expect("day value found")
+                .to_string(),
         }
     }
 }
