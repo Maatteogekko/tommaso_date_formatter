@@ -84,6 +84,7 @@ enum Section {
     M,
     MM,
     MMM,
+    MMMM,
     D,
     DD,
 }
@@ -123,6 +124,7 @@ impl Section {
             Self::M => "m",
             Self::MM => "mm",
             Self::MMM => "mmm",
+            Self::MMMM => "mmmm",
             Self::D => "d",
             Self::DD => "dd",
         }
@@ -135,6 +137,10 @@ impl Section {
             Section::M => format!("{}", date.month()),
             Section::MM => format!("{:0>2}", date.month()),
             Section::MMM => MONTHS_ABBREVIATED
+                .get(&(date.month() as u8))
+                .expect("month value found")
+                .to_string(),
+            Section::MMMM => MONTHS_WIDE
                 .get(&(date.month() as u8))
                 .expect("month value found")
                 .to_string(),
