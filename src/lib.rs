@@ -86,6 +86,9 @@ enum Section {
 #[derive(Debug, Sequence)]
 enum Separator {
     Slash,
+    Period,
+    Hyphen,
+    Space,
 }
 
 impl TryFrom<&str> for FormatPart {
@@ -129,6 +132,9 @@ impl Separator {
     fn value(&self) -> &str {
         match *self {
             Self::Slash => "/",
+            Self::Period => ".",
+            Self::Hyphen => "-",
+            Self::Space => " ",
         }
     }
 }
