@@ -43,10 +43,10 @@ pub fn format(date: &NaiveDate, format: &str) -> Result<String, Box<dyn Error>> 
         .into_iter()
         .map(|v| match v {
             FormatPart::Section(section) => section.format(date),
-            FormatPart::Separator(separator) => Ok(separator.value().to_string()),
+            FormatPart::Separator(separator) => separator.value().to_string(),
         })
-        .collect::<Result<Vec<_>, _>>()?
-        .concat())
+        .reduce(|acc, v| format!("{}{}", acc, v))
+        .ok_or("No part found")?)
 }
 
 fn split_format(format: &str) -> Vec<&str> {
@@ -81,6 +81,7 @@ enum FormatPart {
 enum Section {
     YY,
     YYYY,
+    M,
     MM,
     DD,
 }
@@ -117,17 +118,19 @@ impl Section {
         match *self {
             Self::YY => "yy",
             Self::YYYY => "yyyy",
+            Self::M => "m",
             Self::MM => "mm",
             Self::DD => "dd",
         }
     }
 
-    fn format(&self, date: &NaiveDate) -> Result<String, Box<dyn Error>> {
+    fn format(&self, date: &NaiveDate) -> String {
         match self {
-            Section::YY => Ok(format!("{:0>2}", date.year() % 100)),
-            Section::YYYY => Ok(format!("{}", date.year())),
-            Section::MM => Ok(format!("{:0>2}", date.month())),
-            Section::DD => Ok(format!("{:0>2}", date.day())),
+            Section::YY => format!("{:0>2}", date.year() % 100),
+            Section::YYYY => format!("{}", date.year()),
+            Section::M => format!("{}", date.month()),
+            Section::MM => format!("{:0>2}", date.month()),
+            Section::DD => format!("{:0>2}", date.day()),
         }
     }
 }
